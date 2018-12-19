@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: sample-akiyama-server
+spec:
+ replicas: 2
+ selector:
+   matchLabels:
+     name: sample-akiyama-server
+ template:
+   metadata:
+     labels:
+       name: sample-akiyama-server
+   spec:
+     containers:
+     - name: sample-akiyama-server
+       image: gcr.io/study-sandbox/sample-akiyama-server:latest
+       ports:
+       - containerPort: 8080
+         protocol: TCP
+ revisionHistoryLimit: 100
