@@ -9,33 +9,33 @@ steps:
 # Clusterを取得。$_ZONEはトリガーの変数として設定します。
 - name: 'gcr.io/cloud-builders/gcloud'
   args:
- - beta
- - container
- - clusters
- - get-credentials
- - sample-akiyama-server
- - --zone=$_ZONE
- - --project=$PROJECT_ID
+  - beta
+  - container
+  - clusters
+  - get-credentials
+  - sample-akiyama-server
+  - --zone=$_ZONE
+  - --project=$PROJECT_ID
 # アプリのデプロイ設定
 - name: 'gcr.io/cloud-builders/kubectl'
   args:
- - 'apply'
- - '--filename=deployment.yaml'
+  - 'apply'
+  - '--filename=deployment.yaml'
 # NodePortのサービスを登録する 30580->8080
 - name: 'gcr.io/cloud-builders/kubectl'
   args:
- - 'apply'
- - '--filename=service.yaml'
+  - 'apply'
+  - '--filename=service.yaml'
 # イメージをDeploymentにセットする。
 - name: 'gcr.io/cloud-builders/kubectl'
   args:
- - 'set'
- - 'image'
- - 'deployment/sample-akiyama-server'
- - 'sample-akiyama-server=gcr.io/$PROJECT_ID/sample-akiyama-server:$_VERSION'
+  - 'set'
+  - 'image'
+  - 'deployment/sample-akiyama-server'
+  - 'sample-server=gcr.io/$PROJECT_ID/sample-akiyama-server:$_VERSION'
 # デプロイのステータス確認
 - name: 'gcr.io/cloud-builders/kubectl'
   args:
- - 'rollout'
- - 'status'
- - 'deployment/sample-akiyama-server'
+  - 'rollout'
+  - 'status'
+  - 'deployment/sample-akiyama-server'
