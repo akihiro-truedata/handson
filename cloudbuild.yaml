@@ -32,7 +32,7 @@ steps:
   - 'set'
   - 'image'
   - 'deployment/sample-akiyama-server'
-  - 'sample-server=gcr.io/$PROJECT_ID/sample-akiyama-server:$_VERSION'
+  - 'sample-akiyama-server=gcr.io/$PROJECT_ID/sample-akiyama-server:$_VERSION'
 # デプロイのステータス確認
 - name: 'gcr.io/cloud-builders/kubectl'
   args:
