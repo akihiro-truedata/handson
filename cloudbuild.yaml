@@ -8,7 +8,7 @@ steps:
   args: ["push", "gcr.io/$PROJECT_ID/sample-akiyama-server:$_VERSION"]
 # Clusterを取得。$_ZONEはトリガーの変数として設定します。
 - name: 'gcr.io/cloud-builders/gcloud'
-  args:
+args:
  - beta
  - container
  - clusters
